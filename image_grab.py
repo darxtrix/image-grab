@@ -63,7 +63,7 @@ def downloader(images):
         k=urlopen(str(img))
         parse_result=urlparse.urlparse(img)
         m=parse_result[2].split("/")[-1]
-        if ".jpg" in str(m) or ".png" in str(m) and str(parse_result[0])="http":
+        if ".jpg" in str(m) or ".png" in str(m) and str(parse_result[0])=="http":
            print m
            f=open("D:\\image_grabber3\{}".format(str(m)),"wb")
            f.write(k.read())
