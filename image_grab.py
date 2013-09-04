@@ -1,7 +1,7 @@
 #---written by black_perl(ankush sharma) @ 19-08-2013------
 #----currently this is in beta stage ;can retrieve only images with url scheme "http" from only "http" web sources -------
 #---the best thing about is that you can use it over proxy which is the cause of above restriction ---------
-#-----for using it, you have to make a folder in your local disc(here in the code i have named it as image_grabber1)---------
+#-----for using it, you have to make a folder in your local disc(here in the code i have named it as image_grabber)---------
 #--------this code is will soon be converted to it's alpha stage------------------
 #--------for any queries message me at dc, nick-@dustin---------------------
 
@@ -65,7 +65,7 @@ def downloader(images):
         m=parse_result[2].split("/")[-1]
         if ".jpg" in str(m) or ".png" in str(m) and str(parse_result[0])=="http":
            print m
-           f=open("D:\\image_grabber3\{}".format(str(m)),"wb")
+           f=open("D:\\image_grabber\{}".format(str(m)),"wb")
            f.write(k.read())
            f.flush()
            f.close()
