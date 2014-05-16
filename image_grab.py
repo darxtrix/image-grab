@@ -1,24 +1,37 @@
-#---written by black_perl(ankush sharma) @ 19-08-2013------
-#----currently this is in beta stage ;can retrieve only images with url scheme "http" from only "http" web sources -------
-#---the best thing about is that you can use it over proxy which is the cause of above restriction ---------
-#-----for using it, you have to make a folder in your local disc(here in the code i have named it as image_grabber)---------
-#--------this code is will soon be converted to it's alpha stage------------------
-#--------for any queries message me at dc, nick-@dustin---------------------
+# @ black_perl(ankush sharma) 
+# Grab images by fetching a url over a complex network
 
+# @ Python 2.x.x
+
+## importing libraries
 import httplib
 import base64
 import sys
-from bs4 import BeautifulSoup as bs
 import urlparse
+import logging
+
+from bs4 import BeautifulSoup as bs
 from urllib2 import *
+'''		The urllib2 module defines functions and classes which help in opening URLs (mostly HTTP) in a complex 
+	    world — basic and digest authentication, redirections, cookies and more.
+'''
 
 def proxy_connect(proxy_str,port,username,password):
-#we should specify the objects in yhe order we declare them in opener builder
-  proxy=ProxyHandler({"http":"http://{0}:{1}@{2}:{3}".format(username,password,proxy_str,port)})
-  auth=HTTPBasicAuthHandler()#needed to authenticate proxy for the username and password supplied
-  opener=build_opener(proxy,auth,HTTPHandler)#it provides opening environment for urlopen/http handler for opening http type request with urlopen
-  install_opener(opener)
-  print "------OPENER INSTALLED----------"
+  '''   Installs the opener director objectsto work over proxy network to work for the global urlopen.
+  '''
+  '''	urlopen function works in according to an opener director object .
+  '''
+  '''	Handler objects are the real workers behing fetching a request, opener director objects can be insta
+  		-ntiated using the install_opener function;which manages the collection of all the handlers required for different type of requests viz. 
+  		the requests using http,https and other protocol schemes.
+  '''
+  proxy=ProxyHandler({"http":"http://{0}:{1}@{2}:{3}".format(username,password,proxy_str,port)}) # Proxy handler object
+  auth=HTTPBasicAuthHandler() # Auth handler object
+  opener=build_opener(proxy,auth,HTTPHandler) # building an opener that has the power of authentication, working behind 
+  # proxy and uses the HTTP protocol , this function creates an opener director object
+  #install_opener(opener) # this function sets the global urlopen to use than opener redirector object  
+  # we will use opener.open()
+  # use logging to log 
   
 def getpage(proxy,link,auth):
     con=httplib.HTTPConnection(proxy,80)
